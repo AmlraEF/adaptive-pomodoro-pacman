@@ -19,6 +19,20 @@ var pomodoros;
 var pomoCount;
 
 var audio = new Audio("alarm.mp3");
+var startAudio = new Audio("game_start.WAV");
+var pauseAudio = new Audio("credit.WAV");
+var breakAudio = new Audio("intermission.WAV");
+var breakOverAudio = new Audio("intermission.WAV");
+var pomodoroAudio = new Audio("eat_ghost.WAV");
+var threePomodorosAudio = new Audio("power_pellet.WAV");
+
+function pauseallAudio() {
+   const audios = [startAudio, pauseAudio, breakAudio, breakOverAudio, pomodoroAudio, threePomodorosAudio]
+   audios.forEach(function (item, index) {
+      item.pause();
+      item.currentTime = 0;
+   });
+}
 
 function showTime(div, time) {
    time = Math.floor(time);
@@ -56,8 +70,9 @@ function update() {
       breakClock.time += delta;
       breakCredit.time -= delta;
       if (state == "breaking" && breakCredit.time <= 0) {
-         audio.currentTime = 0;
-         audio.play();
+         pauseallAudio()
+         breakOverAudio.currentTime = 0;
+         breakOverAudio.play();
          state = "breaking_played";
       }
    }
@@ -73,21 +88,25 @@ function startWorkClock() {
    workClock.div.style.color = "#009900";
    breakClock.div.style.color = "black";
    breakClock.div.style.color = "black";
-   audio.pause();
+   pauseallAudio();
+   startAudio.play();
 }
 
 function startBreakClock() {
    state = "breaking";
    workClock.div.style.color = "black";
    breakClock.div.style.color = "#009900";
-   audio.pause();
+   pauseallAudio();
+   breakAudio.st;
+   breakAudio.play();
 }
 
 function pauseClocks() {
    state = "paused";
    workClock.div.style.color = "red";
    breakClock.div.style.color = "red";
-   audio.pause();
+   pauseallAudio();
+   pauseAudio.play();
 }
 
 function getQueryParams(qs) {
