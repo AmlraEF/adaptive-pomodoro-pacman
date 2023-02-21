@@ -8,8 +8,7 @@ for a longer break later.
 
 # Running
 
-* visit <a href="http://hishamhm.github.io/adaptive-pomodoro">http://hishamhm.github.io/adaptive-pomodoro</a>
-* or clone this repo and run locally
+* clone this repo and run locally
 
 ## License
 
